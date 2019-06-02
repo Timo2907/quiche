@@ -13,11 +13,31 @@ fn main() {
             .to_string()
     });
 
-    let crypto_dir = format!("{}/build/crypto", bssl_dir);
+    // MSVC generator on Windows place static libs in a target sub-folder,
+    // so adjust library location based on platform and build target.
+    // See issue: https://github.com/alexcrichton/cmake-rs/issues/18
+    let crypto_dir = if cfg!(windows) {
+        if cfg!(debug_assertions) {
+            format!("{}/build/crypto/Debug", bssl_dir)
+        } else {
+            format!("{}/build/crypto/RelWithDebInfo", bssl_dir)
+        }
+    } else {
+        format!("{}/build/crypto", bssl_dir)
+    };
+
     println!("cargo:rustc-link-search=native={}", crypto_dir);
     println!("cargo:rustc-link-lib=static=crypto");
 
-    let ssl_dir = format!("{}/build/ssl", bssl_dir);
+    let ssl_dir = if cfg!(windows) {
+        if cfg!(debug_assertions) {
+            format!("{}/build/ssl/Debug", bssl_dir)
+        } else {
+            format!("{}/build/ssl/RelWithDebInfo", bssl_dir)
+        }
+    } else {
+        format!("{}/build/ssl", bssl_dir)
+    };
     println!("cargo:rustc-link-search=native={}", ssl_dir);
     println!("cargo:rustc-link-lib=static=ssl");
 }
