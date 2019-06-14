@@ -36,26 +36,38 @@ use crate::Result;
 
 const MAX_WRITE_SIZE: usize = 1000;
 
+/// Keeps track of QUIC streams.
 #[derive(Default)]
 pub struct StreamMap {
+    /// Map of streams by stream ID.
     streams: HashMap<u64, Stream>,
 
+    /// Peer's maximum bidirectional stream count limit.
     peer_max_streams_bidi: usize,
+
+    /// Peer's maximum unidirectional stream count limit.
     peer_max_streams_uni: usize,
 
+    /// Local maximum bidirectional stream count limit.
     local_max_streams_bidi: usize,
+
+    /// Local maximum unidirectional stream count limit.
     local_max_streams_uni: usize,
 }
 
 impl StreamMap {
+    /// Returns the stream with the given ID if it exists.
     pub fn get(&self, id: u64) -> Option<&Stream> {
         self.streams.get(&id)
     }
 
+    /// Returns the mutable stream with the given ID if it exists.
     pub fn get_mut(&mut self, id: u64) -> Option<&mut Stream> {
         self.streams.get_mut(&id)
     }
 
+    /// Returns the mutable stream with the given ID if it exists, or creates
+    /// a new one otherwise.
     pub fn get_or_create(
         &mut self, id: u64, max_rx_data: usize, max_tx_data: usize, local: bool,
         is_server: bool,
@@ -103,46 +115,60 @@ impl StreamMap {
         Ok(stream)
     }
 
+    /// Updates the local maximum bidirectional stream count limit.
     pub fn update_local_max_streams_bidi(&mut self, v: usize) {
         self.local_max_streams_bidi = cmp::max(self.local_max_streams_bidi, v);
     }
 
+    /// Updates the local maximum unidirectional stream count limit.
     pub fn update_local_max_streams_uni(&mut self, v: usize) {
         self.local_max_streams_uni = cmp::max(self.local_max_streams_uni, v);
     }
 
+    /// Updates the peer's maximum bidirectional stream count limit.
     pub fn update_peer_max_streams_bidi(&mut self, v: usize) {
         self.peer_max_streams_bidi = cmp::max(self.peer_max_streams_bidi, v);
     }
 
+    /// Updates the peer's maximum unidirectional stream count limit.
     pub fn update_peer_max_streams_uni(&mut self, v: usize) {
         self.peer_max_streams_uni = cmp::max(self.peer_max_streams_uni, v);
     }
 
+    /// Creates an iterator over streams that have outstanding data to read.
     pub fn readable(&mut self) -> Readable {
         Readable::new(&self.streams)
     }
 
+    /// Creates an iterator over all streams.
     pub fn iter_mut(&mut self) -> hash_map::IterMut<u64, Stream> {
         self.streams.iter_mut()
     }
 
+    /// Returns true if there are any streams that have data to write.
     pub fn has_writable(&self) -> bool {
         self.streams.values().any(Stream::writable)
     }
 
+    /// Returns true if there are any streams that need to update the local
+    /// flow control limit.
     pub fn has_out_of_credit(&self) -> bool {
         self.streams.values().any(|s| s.recv.more_credit())
     }
 }
 
+/// A QUIC stream.
 #[derive(Default)]
 pub struct Stream {
+    /// Receive-side stream state.
     pub recv: RecvBuf,
+
+    /// Send-side stream state.
     pub send: SendBuf,
 }
 
 impl Stream {
+    /// Creates a new stream with the given flow control limits.
     pub fn new(max_rx_data: usize, max_tx_data: usize) -> Stream {
         Stream {
             recv: RecvBuf::new(max_rx_data),
@@ -150,19 +176,23 @@ impl Stream {
         }
     }
 
+    /// Returns true if the stream has data to read.
     pub fn readable(&self) -> bool {
         self.recv.ready()
     }
 
+    /// Returns true if the stream has data to write.
     pub fn writable(&self) -> bool {
         self.send.ready() && self.send.off() <= self.send.max_data
     }
 }
 
+/// Returns true if the stream was created locally.
 pub fn is_local(id: u64, is_server: bool) -> bool {
     (id & 0x1) == (is_server as u64)
 }
 
+/// Returns true if the stream is bidirectional.
 pub fn is_bidi(id: u64) -> bool {
     (id & 0x2) == 0
 }
@@ -198,13 +228,25 @@ impl<'a> Iterator for Readable<'a> {
     }
 }
 
+/// Receive-side stream state.
 #[derive(Default)]
 pub struct RecvBuf {
+    /// Chunks of data received from the peer, ordered by offset.
     data: BinaryHeap<RangeBuf>,
+
+    /// The lowest data offset that has yet to be read by the application.
     off: usize,
+
+    /// The total length of data received on this stream.
     len: usize,
+
+    /// Maximum offset the peer is allowed to send us.
     max_data: usize,
+
+    /// Updated maximum offset the peer is allowed to send us.
     max_data_next: usize,
+
+    /// The final stream offset received from the peer, if any.
     fin_off: Option<usize>,
 }
 
@@ -217,6 +259,7 @@ impl RecvBuf {
         }
     }
 
+    /// Inserts the given chunk of data in the buffer.
     pub fn push(&mut self, buf: RangeBuf) -> Result<()> {
         if self.off >= buf.max_off() {
             // Data is fully duplicate.
@@ -284,6 +327,7 @@ impl RecvBuf {
         Ok(())
     }
 
+    /// Writes ordered and contiguous data into the given buffer.
     pub fn pop(&mut self, out: &mut [u8]) -> Result<(usize, bool)> {
         let mut len = 0;
         let mut cap = out.len();
@@ -323,6 +367,7 @@ impl RecvBuf {
         Ok((len, self.is_fin()))
     }
 
+    /// Resets the stream at the given offset.
     pub fn reset(&mut self, final_size: usize) -> Result<usize> {
         // Stream's size is already known, forbid changing it.
         if let Some(fin_off) = self.fin_off {
@@ -343,12 +388,14 @@ impl RecvBuf {
         Ok(final_size - self.len)
     }
 
+    /// Commits the new max_data limit and returns it.
     pub fn update_max_data(&mut self) -> usize {
         self.max_data = self.max_data_next;
 
         self.max_data
     }
 
+    /// Returns true if we need to update the local flow control limit.
     pub fn more_credit(&self) -> bool {
         // Send MAX_STREAM_DATA when the new limit is at least double the
         // amount of data that can be received before blocking.
@@ -357,6 +404,7 @@ impl RecvBuf {
             self.max_data_next / 2 > self.max_data - self.len
     }
 
+    /// Returns true if the receive-side of the stream is complete.
     pub fn is_fin(&self) -> bool {
         if self.fin_off == Some(self.off) {
             return true;
@@ -365,6 +413,7 @@ impl RecvBuf {
         false
     }
 
+    /// Returns true if the stream has data to be read.
     fn ready(&self) -> bool {
         let buf = match self.data.peek() {
             Some(v) => v,
@@ -375,12 +424,22 @@ impl RecvBuf {
     }
 }
 
+/// Send-side stream state.
 #[derive(Default)]
 pub struct SendBuf {
+    /// Chunks of data to be sent, ordered by offset.
     data: BinaryHeap<RangeBuf>,
+
+    /// The maximum offset of data buffered in the stream.
     off: usize,
+
+    /// The amount of data that was ever written to this stream.
     len: usize,
+
+    /// The maximum offset we are allowed to send to the peer.
     max_data: usize,
+
+    /// The highest contiguous ACK'd offset.
     off_ack: usize,
 }
 
@@ -392,6 +451,7 @@ impl SendBuf {
         }
     }
 
+    /// Inserts the given slice at the ned of the buffer.
     pub fn push_slice(&mut self, data: &[u8], fin: bool) -> Result<()> {
         let mut len = 0;
 
@@ -417,6 +477,7 @@ impl SendBuf {
         Ok(())
     }
 
+    /// Inserts the given chunk of data in the buffer.
     pub fn push(&mut self, buf: RangeBuf) -> Result<()> {
         // Don't queue data that was already fully ACK'd.
         if self.off_ack >= buf.max_off() {
