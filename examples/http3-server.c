@@ -83,7 +83,7 @@ static struct connections *conns = NULL;
 static void timeout_cb(EV_P_ ev_timer *w, int revents);
 
 static void debug_log(const char *line, void *argp) {
-    fprintf(stderr, "%s\n", line);
+    fprintf(stderr, "HTTP3_SERVER::%s\n", line);
 }
 
 static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
@@ -93,12 +93,12 @@ static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
         ssize_t written = quiche_conn_send(conn_io->conn, out, sizeof(out));
 
         if (written == QUICHE_ERR_DONE) {
-            fprintf(stderr, "done writing\n");
+            fprintf(stderr, "HTTP3_SERVER::done writing\n");
             break;
         }
 
         if (written < 0) {
-            fprintf(stderr, "failed to create packet: %ld\n", written);
+            fprintf(stderr, "HTTP3_SERVER::failed to create packet: %ld\n", written);
             return;
         }
 
@@ -110,7 +110,7 @@ static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
             return;
         }
 
-        fprintf(stderr, "sent %lu bytes\n", sent);
+        fprintf(stderr, "HTTP3_SERVER::sent %lu bytes\n", sent);
     }
 
     double t = quiche_conn_timeout_as_nanos(conn_io->conn) / 1e9f;
@@ -159,7 +159,7 @@ static bool validate_token(const uint8_t *token, size_t token_len,
 static struct conn_io *create_conn(uint8_t *odcid, size_t odcid_len) {
     struct conn_io *conn_io = calloc(1, sizeof(*conn_io));
     if (conn_io == NULL) {
-        fprintf(stderr, "failed to allocate connection IO\n");
+        fprintf(stderr, "HTTP3_SERVER::failed to allocate connection IO\n");
         return NULL;
     }
 
@@ -178,7 +178,7 @@ static struct conn_io *create_conn(uint8_t *odcid, size_t odcid_len) {
     quiche_conn *conn = quiche_accept(conn_io->cid, LOCAL_CONN_ID_LEN,
                                       odcid, odcid_len, config);
     if (conn == NULL) {
-        fprintf(stderr, "failed to create connection\n");
+        fprintf(stderr, "HTTP3_SERVER::failed to create connection\n");
         return NULL;
     }
 
@@ -190,7 +190,7 @@ static struct conn_io *create_conn(uint8_t *odcid, size_t odcid_len) {
 
     HASH_ADD(hh, conns->h, cid, LOCAL_CONN_ID_LEN, conn_io);
 
-    fprintf(stderr, "new connection\n");
+    fprintf(stderr, "HTTP3_SERVER::new connection\n");
 
     return conn_io;
 }
@@ -198,7 +198,7 @@ static struct conn_io *create_conn(uint8_t *odcid, size_t odcid_len) {
 static int for_each_header(uint8_t *name, size_t name_len,
                            uint8_t *value, size_t value_len,
                            void *argp) {
-    fprintf(stderr, "got HTTP header: %.*s=%.*s\n",
+    fprintf(stderr, "HTTP3_SERVER::got HTTP header: %.*s=%.*s\n",
             (int) name_len, name, (int) value_len, value);
 
     return 0;
@@ -221,7 +221,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
 
         if (read < 0) {
             if ((errno == EWOULDBLOCK) || (errno == EAGAIN)) {
-                fprintf(stderr, "recv would block\n");
+                fprintf(stderr, "HTTP3_SERVER::recv would block\n");
                 break;
             }
 
@@ -248,7 +248,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                     &type, scid, &scid_len, dcid, &dcid_len,
                                     token, &token_len);
         if (rc < 0) {
-            fprintf(stderr, "failed to parse header: %d\n", rc);
+            fprintf(stderr, "HTTP3_SERVER::failed to parse header: %d\n", rc);
             return;
         }
 
@@ -256,14 +256,14 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
 
         if (conn_io == NULL) {
             if (version != QUICHE_PROTOCOL_VERSION) {
-                fprintf(stderr, "version negotiation\n");
+                fprintf(stderr, "HTTP3_SERVER::version negotiation\n");
 
                 ssize_t written = quiche_negotiate_version(scid, scid_len,
                                                            dcid, dcid_len,
                                                            out, sizeof(out));
 
                 if (written < 0) {
-                    fprintf(stderr, "failed to create vneg packet: %ld\n",
+                    fprintf(stderr, "HTTP3_SERVER::failed to create vneg packet: %ld\n",
                             written);
                     return;
                 }
@@ -276,12 +276,12 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                     return;
                 }
 
-                fprintf(stderr, "sent %lu bytes\n", sent);
+                fprintf(stderr, "HTTP3_SERVER::sent %lu bytes\n", sent);
                 return;
             }
 
             if (token_len == 0) {
-                fprintf(stderr, "stateless retry\n");
+                fprintf(stderr, "HTTP3_SERVER::stateless retry\n");
 
                 mint_token(dcid, dcid_len, &peer_addr, peer_addr_len,
                            token, &token_len);
@@ -293,7 +293,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                                out, sizeof(out));
 
                 if (written < 0) {
-                    fprintf(stderr, "failed to create retry packet: %ld\n",
+                    fprintf(stderr, "HTTP3_SERVER::failed to create retry packet: %ld\n",
                             written);
                     return;
                 }
@@ -306,14 +306,14 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                     return;
                 }
 
-                fprintf(stderr, "sent %lu bytes\n", sent);
+                fprintf(stderr, "HTTP3_SERVER::sent %lu bytes\n", sent);
                 return;
             }
 
 
             if (!validate_token(token, token_len, &peer_addr, peer_addr_len,
                                odcid, &odcid_len)) {
-                fprintf(stderr, "invalid address validation token\n");
+                fprintf(stderr, "HTTP3_SERVER::invalid address validation token\n");
                 return;
             }
 
@@ -329,16 +329,16 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
         ssize_t done = quiche_conn_recv(conn_io->conn, buf, read);
 
         if (done == QUICHE_ERR_DONE) {
-            fprintf(stderr, "done reading\n");
+            fprintf(stderr, "HTTP3_SERVER::done reading\n");
             break;
         }
 
         if (done < 0) {
-            fprintf(stderr, "failed to process packet: %ld\n", done);
+            fprintf(stderr, "HTTP3_SERVER::failed to process packet: %ld\n", done);
             return;
         }
 
-        fprintf(stderr, "recv %lu bytes\n", done);
+        fprintf(stderr, "HTTP3_SERVER::recv %lu bytes\n", done);
 
         if (quiche_conn_is_established(conn_io->conn)) {
             quiche_h3_event *ev;
@@ -347,7 +347,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                 conn_io->http3 = quiche_h3_conn_new_with_transport(conn_io->conn,
                                                                    http3_config);
                 if (conn_io->http3 == NULL) {
-                    fprintf(stderr, "failed to create HTTP/3 connection\n");
+                    fprintf(stderr, "HTTP3_SERVER::failed to create HTTP/3 connection\n");
                     return;
                 }
             }
@@ -368,7 +368,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                                                  NULL);
 
                         if (rc != 0) {
-                            fprintf(stderr, "failed to process headers\n");
+                            fprintf(stderr, "HTTP3_SERVER::failed to process headers\n");
                         }
 
                         quiche_h3_header headers[] = {
@@ -397,16 +397,32 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                             },
                         };
 
+                        //Sending the HTTP response.
                         quiche_h3_send_response(conn_io->http3, conn_io->conn,
                                                 s, headers, 3, true);
 
-                        quiche_h3_send_body(conn_io->http3, conn_io->conn,
-                                            s, (uint8_t *) "byez\n", 5, true);
+                        
+                        //Sending ten times the body.
+                        for(int i=1; i<10; i++)
+                        {
+                            //TODO sent the file "/toot/index.html" instead of simple "Hello World"
+                            FILE *fp;
+                            fp = fopen("/root/index.html", "r"); // read mode
+                             if (fp == NULL)
+                                perror("Error while opening the file.\n");
+                            // fclose(fp); https://www.programmingsimplified.com/c-program-read-file
+
+                            uint8_t* content = (uint8_t *) "Hello World!\n";
+                            size_t content_len = 14;
+
+                            quiche_h3_send_body(conn_io->http3, conn_io->conn,
+                                                s, content, content_len, true);
+                        }
                         break;
                     }
 
                     case QUICHE_H3_EVENT_DATA: {
-                        fprintf(stderr, "got HTTP data\n");
+                        fprintf(stderr, "HTTP3_SERVER::got HTTP data\n");
                         break;
                     }
 
@@ -436,12 +452,12 @@ static void timeout_cb(EV_P_ ev_timer *w, int revents) {
     struct conn_io *conn_io = w->data;
     quiche_conn_on_timeout(conn_io->conn);
 
-    fprintf(stderr, "timeout\n");
+    fprintf(stderr, "HTTP3_SERVER::timeout\n");
 
     flush_egress(loop, conn_io);
 
     if (quiche_conn_is_closed(conn_io->conn)) {
-        fprintf(stderr, "connection closed\n");
+        fprintf(stderr, "HTTP3_SERVER::connection closed\n");
 
         HASH_DELETE(hh, conns->h, conn_io);
 
@@ -489,12 +505,12 @@ int main(int argc, char *argv[]) {
 
     config = quiche_config_new(QUICHE_PROTOCOL_VERSION);
     if (config == NULL) {
-        fprintf(stderr, "failed to create config\n");
+        fprintf(stderr, "HTTP3_SERVER::failed to create config\n");
         return -1;
     }
 
-    quiche_config_load_cert_chain_from_pem_file(config, "examples/cert.crt");
-    quiche_config_load_priv_key_from_pem_file(config, "examples/cert.key");
+    quiche_config_load_cert_chain_from_pem_file(config, "./cert.crt");
+    quiche_config_load_priv_key_from_pem_file(config, "./cert.key");
 
     quiche_config_set_application_protos(config,
         (uint8_t *) QUICHE_H3_APPLICATION_PROTOCOL,
@@ -512,7 +528,7 @@ int main(int argc, char *argv[]) {
 
     http3_config = quiche_h3_config_new(0, 1024, 0, 0);
     if (config == NULL) {
-        fprintf(stderr, "failed to create HTTP/3 config\n");
+        fprintf(stderr, "HTTP3_SERVER::failed to create HTTP/3 config\n");
         return -1;
     }
 

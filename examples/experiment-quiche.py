@@ -24,13 +24,13 @@ def createNetwork():
 	net.addController( 'c0' ) #is it ok ?
 
 	#add host to topology
-	ht = net.addHost( 'ht', ip='10.10.0.1/24' )
-	hu = net.addHost( 'hu', ip='10.10.0.2/24' )
-	it = net.addHost( 'it', ip='10.20.0.1/24' )
-	iu = net.addHost( 'iu', ip='10.20.0.2/24' )
+	ht = net.addHost( 'ht', ip='fe80:0:0:0:0:0:a0a:1/64' ) # 10.10.0.1/24 = fe80:0:0:0:0:0:a0a:1 (converted IPv4 to IPv6)
+	hu = net.addHost( 'hu', ip='fe80:0:0:0:0:0:a0a:2/64' ) # 10.10.0.2/24 = fe80:0:0:0:0:0:a0a:2
+	it = net.addHost( 'it', ip='fe80:0:0:0:0:0:a14:1/64' ) # 10.20.0.1/24 = fe80:0:0:0:0:0:a14:1
+	iu = net.addHost( 'iu', ip='fe80:0:0:0:0:0:a14:2/64' ) # 10.20.0.2/24 = fe80:0:0:0:0:0:a14:2
 
-	rh = net.addHost('rh', ip='10.10.0.10/24')
-	ri = net.addHost('ri', ip='10.20.0.20/24')
+	rh = net.addHost('rh', ip='fe80:0:0:0:0:0:a0a:a/64') # 10.10.0.10/24 = fe80:0:0:0:0:0:a0a:a
+	ri = net.addHost('ri', ip='fe80:0:0:0:0:0:a14:14/64') # 10.20.0.20/24 = fe80:0:0:0:0:0:a14:14
 
 	info('\n** Adding Switches\n')
 	# Adding 2 switches to the network
@@ -75,23 +75,23 @@ def createNetwork():
 
 	info( '\n*** Configuring hosts\n' )
 
-	rh.cmd('ifconfig rh-eth1 10.12.0.10 netmask 255.255.255.0') #reconfiguring mutiples intefaces host to prevent mininet strange initialisation behaviors
-	rh.cmd('ifconfig rh-eth0 10.10.0.10 netmask 255.255.255.0')
-	rh.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward') #enable forwarding at routers
+	rh.cmd('ifconfig rh-eth1 inet6 add fe80:0:0:0:0:0:a0c:a/64')
+	rh.cmd('ifconfig rh-eth0 inet6 add fe80:0:0:0:0:0:a0a:a/64')
+	rh.cmd('echo 1 > /proc/sys/net/ipv6/conf/all/forwarding')
 
-	ri.cmd('ifconfig ri-eth1 10.12.0.20 netmask 255.255.255.0') #reconfiguring mutiples intefaces host to prvent mininet strange initialisation behaviors
-	ri.cmd('ifconfig ri-eth0 10.20.0.20 netmask 255.255.255.0')
-	ri.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward') #enable forwarding at routers
+	ri.cmd('ifconfig ri-eth1 inet6 add fe80:0:0:0:0:0:a0c:14/64')
+	ri.cmd('ifconfig ri-eth0 inet6 add fe80:0:0:0:0:0:a14:14/64')
+	ri.cmd('echo 1 > /proc/sys/net/ipv6/conf/all/forwarding')
 
 	#configure host default gateways
-	ht.cmd('ip route add default via 10.10.0.10')
-	hu.cmd('ip route add default via 10.10.0.10')
-	it.cmd('ip route add default via 10.20.0.20')
-	iu.cmd('ip route add default via 10.20.0.20')
+	ht.cmd('ip -6 route add default via inet6 fe80:0:0:0:0:0:a0a:a dev ht-eth0')
+	hu.cmd('ip -6 route add default via inet6 fe80:0:0:0:0:0:a0a:a dev hu-eth0')
+	it.cmd('ip -6 route add default via inet6 fe80:0:0:0:0:0:a14:14 dev it-eth0')
+	iu.cmd('ip -6 route add default via inet6 fe80:0:0:0:0:0:a14:14 dev iu-eth0')
 
 	#configure router routing tables
-	rh.cmd('ip route add default via 10.12.0.20')
-	ri.cmd('ip route add default via 10.12.0.10')
+	rh.cmd('ip -6 route add default via inet6 fe80:0:0:0:0:0:a0c:14') # NOT WORKING (Invalid argument) -> check ip -6 route help
+	ri.cmd('ip -6 route add default via inet6 fe80:0:0:0:0:0:a0c:a') # NOT WORKING
 
         # weiyu:
         iu.cmd('touch server.pcap')
@@ -100,7 +100,8 @@ def createNetwork():
 
         rh.cmd('tc qdisc del dev rh-eth1 root')
 	
-	start_nodes(rh, ri, iu, hu, mqs) #experiment actions
+	#TODO for experiment setup: comment in
+	# start_nodes(rh, ri, iu, hu, mqs) #experiment actions
 
 
 	it.cmd('ethtool -K it-eth0 tx off sg off tso off') #disable TSO on TCP on defaul TCP sender need to be done on other host if sending large TCP file from other nodes
