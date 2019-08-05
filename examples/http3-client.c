@@ -57,7 +57,7 @@ struct conn_io {
 };
 
 static void debug_log(const char *line, void *argp) {
-    fprintf(stderr, "HTTP3_CLIENT::%s\n", line);
+    fprintf(stdout, "HTTP3_CLIENT::%s\n", line);
 }
 
 static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
@@ -67,12 +67,12 @@ static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
         ssize_t written = quiche_conn_send(conn_io->conn, out, sizeof(out));
 
         if (written == QUICHE_ERR_DONE) {
-            fprintf(stderr, "HTTP3_CLIENT::done writing\n");
+            fprintf(stdout, "HTTP3_CLIENT::done writing\n");
             break;
         }
 
         if (written < 0) {
-            fprintf(stderr, "HTTP3_CLIENT::failed to create packet: %ld\n", written);
+            fprintf(stdout, "HTTP3_CLIENT::failed to create packet: %ld\n", written);
             return;
         }
 
@@ -82,7 +82,7 @@ static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
             return;
         }
 
-        fprintf(stderr, "HTTP3_CLIENT::sent %lu bytes\n", sent);
+        fprintf(stdout, "HTTP3_CLIENT::sent %lu bytes\n", sent);
     }
 
     double t = quiche_conn_timeout_as_nanos(conn_io->conn) / 1e9f;
@@ -93,7 +93,7 @@ static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
 static int for_each_header(uint8_t *name, size_t name_len,
                            uint8_t *value, size_t value_len,
                            void *argp) {
-    fprintf(stderr, "HTTP3_CLIENT::got HTTP header: %.*s=%.*s\n",
+    fprintf(stdout, "HTTP3_CLIENT::got HTTP header: %.*s=%.*s\n",
             (int) name_len, name, (int) value_len, value);
 
     return 0;
@@ -111,7 +111,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
 
         if (read < 0) {
             if ((errno == EWOULDBLOCK) || (errno == EAGAIN)) {
-                fprintf(stderr, "HTTP3_CLIENT::recv would block\n");
+                fprintf(stdout, "HTTP3_CLIENT::recv would block\n");
                 break;
             }
 
@@ -122,20 +122,20 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
         ssize_t done = quiche_conn_recv(conn_io->conn, buf, read);
 
         if (done == QUICHE_ERR_DONE) {
-            fprintf(stderr, "HTTP3_CLIENT::done reading\n");
+            fprintf(stdout, "HTTP3_CLIENT::done reading\n");
             break;
         }
 
         if (done < 0) {
-            fprintf(stderr, "HTTP3_CLIENT::failed to process packet: %ld\n", done);
+            fprintf(stdout, "HTTP3_CLIENT::failed to process packet: %ld\n", done);
             return;
         }
 
-        fprintf(stderr, "HTTP3_CLIENT::recv %lu bytes\n", done);
+        fprintf(stdout, "HTTP3_CLIENT::recv %lu bytes\n", done);
     }
 
     if (quiche_conn_is_closed(conn_io->conn)) {
-        fprintf(stderr, "HTTP3_CLIENT::connection closed\n");
+        fprintf(stdout, "HTTP3_CLIENT::connection closed\n");
 
         ev_break(EV_A_ EVBREAK_ONE);
         return;
@@ -147,18 +147,18 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
 
         quiche_conn_application_proto(conn_io->conn, &app_proto, &app_proto_len);
 
-        fprintf(stderr, "HTTP3_CLIENT::connection established: %.*s\n ############################## \n ##### TLS HANDSHAKE DONE ##### \n ############################## \n",
+        fprintf(stdout, "HTTP3_CLIENT::connection established: %.*s\n ############################## \n ##### TLS HANDSHAKE DONE ##### \n ############################## \n",
                 (int) app_proto_len, app_proto);
 
         quiche_h3_config *config = quiche_h3_config_new(0, 1024, 0, 0);
         if (config == NULL) {
-            fprintf(stderr, "HTTP3_CLIENT::failed to create HTTP/3 config\n");
+            fprintf(stdout, "HTTP3_CLIENT::failed to create HTTP/3 config\n");
             return;
         }
 
         conn_io->http3 = quiche_h3_conn_new_with_transport(conn_io->conn, config);
         if (conn_io->http3 == NULL) {
-            fprintf(stderr, "HTTP3_CLIENT::failed to create HTTP/3 connection\n");
+            fprintf(stdout, "HTTP3_CLIENT::failed to create HTTP/3 connection\n");
             return;
         }
 
@@ -193,8 +193,8 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                 .name = (const uint8_t *) ":path",
                 .name_len = sizeof(":path") - 1,
 
-                .value = (const uint8_t *) "/root/index.html",
-                .value_len = sizeof("/root/index.html") - 1,
+                .value = (const uint8_t *) "/",
+                .value_len = sizeof("/") - 1,
             },
 
             {
@@ -211,7 +211,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                                    conn_io->conn,
                                                    headers, 5, true);
         
-        fprintf(stderr, "HTTP3_CLIENT::sent HTTP request %" PRId64 "\n", stream_id);
+        fprintf(stdout, "HTTP3_CLIENT::sent HTTP request %" PRId64 "\n", stream_id);
         req_sent = true;
     }
 
@@ -233,7 +233,7 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                                              NULL);
 
                     if (rc != 0) {
-                        fprintf(stderr, "HTTP3_CLIENT::failed to process headers");
+                        fprintf(stdout, "HTTP3_CLIENT::failed to process headers");
                     }
 
                     break;
@@ -247,13 +247,15 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                         break;
                     }
 
-                    printf("%.*s", (int) len, buf);
+                    //Prints the content of the HTTP Data file
+                    //printf("%.*s", (int) len, buf); //full output
+                    printf(" ############################## \n ##### Content received. ##### \n ############################## \n"); //short output
                     break;
                 }
 
                 case QUICHE_H3_EVENT_FINISHED:
                     if (quiche_conn_close(conn_io->conn, true, 0, NULL, 0) < 0) {
-                        fprintf(stderr, "HTTP3_CLIENT::failed to close connection\n");
+                        fprintf(stdout, "HTTP3_CLIENT::failed to close connection\n");
                     }
                     break;
             }
@@ -269,7 +271,7 @@ static void timeout_cb(EV_P_ ev_timer *w, int revents) {
     struct conn_io *conn_io = w->data;
     quiche_conn_on_timeout(conn_io->conn);
 
-    fprintf(stderr, "HTTP3_CLIENT::timeout\n");
+    fprintf(stdout, "HTTP3_CLIENT::timeout\n");
 
     flush_egress(loop, conn_io);
 
@@ -278,8 +280,8 @@ static void timeout_cb(EV_P_ ev_timer *w, int revents) {
 
         quiche_conn_stats(conn_io->conn, &stats);
 
-        fprintf(stderr, "HTTP3_CLIENT::connection closed\n");
-        fprintf(stderr, "HTTP3_CLIENT::QUIC Statistics: pkts recv=%" PRIu64 " sent=%" PRIu64 " lost=%" PRIu64 " / rtt=%" PRIu64 "ns\n",
+        fprintf(stdout, "HTTP3_CLIENT::connection closed\n");
+        fprintf(stdout, "HTTP3_CLIENT::QUIC Statistics: pkts recv=%" PRIu64 " sent=%" PRIu64 " lost=%" PRIu64 " / rtt=%" PRIu64 "ns\n",
                 stats.recv, stats.sent, stats.lost, stats.rtt);
 
         ev_break(EV_A_ EVBREAK_ONE);
@@ -323,7 +325,7 @@ int main(int argc, char *argv[]) {
 
     quiche_config *config = quiche_config_new(0xbabababa);
     if (config == NULL) {
-        fprintf(stderr, "HTTP3_CLIENT::failed to create config\n");
+        fprintf(stdout, "HTTP3_CLIENT::failed to create config\n");
         return -1;
     }
 
@@ -359,13 +361,13 @@ int main(int argc, char *argv[]) {
     quiche_conn *conn = quiche_connect(host, (const uint8_t *) scid,
                                        sizeof(scid), config);
     if (conn == NULL) {
-        fprintf(stderr, "HTTP3_CLIENT::failed to create connection\n");
+        fprintf(stdout, "HTTP3_CLIENT::failed to create connection\n");
         return -1;
     }
 
     struct conn_io *conn_io = malloc(sizeof(*conn_io));
     if (conn_io == NULL) {
-        fprintf(stderr, "HTTP3_CLIENT::failed to allocate connection IO\n");
+        fprintf(stdout, "HTTP3_CLIENT::failed to allocate connection IO\n");
         return -1;
     }
 
@@ -374,18 +376,26 @@ int main(int argc, char *argv[]) {
 
     ev_io watcher;
 
-    struct ev_loop *loop = ev_default_loop(0);
+    struct ev_loop *loop = ev_default_loop(0); 
+    printf("DEBUG::ev_loop\n");
 
     ev_io_init(&watcher, recv_cb, conn_io->sock, EV_READ);
+    printf("DEBUG::ev_io_init (Receive Callback)\n");
     ev_io_start(loop, &watcher);
+    printf("DEBUG::ev_io_start\n");
     watcher.data = conn_io;
+    printf("DEBUG::watcher.data\n");
 
     ev_init(&conn_io->timer, timeout_cb);
+    printf("DEBUG::ev_init (Timeout Callback)\n");
     conn_io->timer.data = conn_io;
+    printf("DEBUG::timer.data\n");
 
     flush_egress(loop, conn_io);
+    printf("DEBUG::flush_egress\n");
 
     ev_loop(loop, 0);
+    printf("DEBUG::ev_loop\n");
 
     freeaddrinfo(peer);
 

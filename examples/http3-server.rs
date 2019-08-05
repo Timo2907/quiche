@@ -505,12 +505,13 @@ fn build_response(
 
     for c in path.components() {
         if let std::path::Component::Normal(v) = c {
-            file_path.push(v)
+            file_path.push(v);
         }
     }
 
     let (status, body) = match std::fs::read(file_path.as_path()) {
         Ok(data) => (200, data),
+
 
         Err(_) => (404, b"Not Found!".to_vec()),
     };

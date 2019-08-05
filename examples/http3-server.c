@@ -405,13 +405,6 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                         //Sending ten times the body.
                         for(int i=1; i<10; i++)
                         {
-                            //TODO sent the file "/toot/index.html" instead of simple "Hello World"
-                            FILE *fp;
-                            fp = fopen("/root/index.html", "r"); // read mode
-                             if (fp == NULL)
-                                perror("Error while opening the file.\n");
-                            // fclose(fp); https://www.programmingsimplified.com/c-program-read-file
-
                             uint8_t* content = (uint8_t *) "Hello World!\n";
                             size_t content_len = 14;
 
