@@ -46,6 +46,8 @@
 
 #define MAX_DATAGRAM_SIZE 1350
 
+int httpDataFrameCounter=0;
+
 struct conn_io {
     ev_timer timer;
 
@@ -86,6 +88,7 @@ static void flush_egress(struct ev_loop *loop, struct conn_io *conn_io) {
     }
 
     double t = quiche_conn_timeout_as_nanos(conn_io->conn) / 1e9f;
+    fprintf(stdout, "HTTP3_CLIENT::TIMEOUT::%f seconds\n", t);
     conn_io->timer.repeat = t;
     ev_timer_again(loop, &conn_io->timer);
 }
@@ -233,7 +236,9 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                                              NULL);
 
                     if (rc != 0) {
-                        fprintf(stdout, "HTTP3_CLIENT::failed to process headers");
+                        fprintf(stdout, "HTTP3_CLIENT::failed to process headers\n");
+                    } else {
+                        fprintf(stdout, "HTTP3_CLIENT::processed event 'headers'\n");
                     }
 
                     break;
@@ -245,17 +250,24 @@ static void recv_cb(EV_P_ ev_io *w, int revents) {
                                                       buf, sizeof(buf));
                     if (len <= 0) {
                         break;
+                    } else {
+                        fprintf(stdout, "HTTP3_CLIENT::processed event 'data'\n");
+
                     }
 
+                    httpDataFrameCounter++;
+                    
                     //Prints the content of the HTTP Data file
                     //printf("%.*s", (int) len, buf); //full output
-                    printf(" ############################## \n ##### Content received. ##### \n ############################## \n"); //short output
+                    printf(" ############################## \n #### DATA FRAME RECEIVED: %i #### \n ############################## \n", httpDataFrameCounter); //short output
                     break;
                 }
 
                 case QUICHE_H3_EVENT_FINISHED:
                     if (quiche_conn_close(conn_io->conn, true, 0, NULL, 0) < 0) {
                         fprintf(stdout, "HTTP3_CLIENT::failed to close connection\n");
+                    } else {
+                        fprintf(stdout, "HTTP3_CLIENT::processed event 'finished'\n");
                     }
                     break;
             }
@@ -271,7 +283,7 @@ static void timeout_cb(EV_P_ ev_timer *w, int revents) {
     struct conn_io *conn_io = w->data;
     quiche_conn_on_timeout(conn_io->conn);
 
-    fprintf(stdout, "HTTP3_CLIENT::timeout\n");
+    fprintf(stdout, "HTTP3_CLIENT::timeout_cb\n");
 
     flush_egress(loop, conn_io);
 
@@ -333,7 +345,7 @@ int main(int argc, char *argv[]) {
         (uint8_t *) QUICHE_H3_APPLICATION_PROTOCOL,
         sizeof(QUICHE_H3_APPLICATION_PROTOCOL) - 1);
 
-    quiche_config_set_idle_timeout(config, 5000); 
+    quiche_config_set_idle_timeout(config, 5000000000); 
     quiche_config_set_max_packet_size(config, MAX_DATAGRAM_SIZE);
     quiche_config_set_initial_max_data(config, 10000000);
     quiche_config_set_initial_max_stream_data_bidi_local(config, 1000000);
@@ -377,25 +389,25 @@ int main(int argc, char *argv[]) {
     ev_io watcher;
 
     struct ev_loop *loop = ev_default_loop(0); 
-    printf("DEBUG::ev_loop\n");
+    printf("DEBUG1::ev_loop\n");
 
     ev_io_init(&watcher, recv_cb, conn_io->sock, EV_READ);
-    printf("DEBUG::ev_io_init (Receive Callback)\n");
+    printf("DEBUG2::ev_io_init (Receive Callback)\n");
     ev_io_start(loop, &watcher);
-    printf("DEBUG::ev_io_start\n");
+    printf("DEBUG3::ev_io_start\n");
     watcher.data = conn_io;
-    printf("DEBUG::watcher.data\n");
+    printf("DEBUG4::watcher.data\n");
 
     ev_init(&conn_io->timer, timeout_cb);
-    printf("DEBUG::ev_init (Timeout Callback)\n");
+    printf("DEBUG5::ev_init (Timeout Callback) with timer=%f \n", conn_io->timer.repeat);
     conn_io->timer.data = conn_io;
-    printf("DEBUG::timer.data\n");
+    printf("DEBUG6::timer.data\n");
 
     flush_egress(loop, conn_io);
-    printf("DEBUG::flush_egress\n");
+    printf("DEBUG7::flush_egress\n");
 
     ev_loop(loop, 0);
-    printf("DEBUG::ev_loop\n");
+    printf("DEBUG8::ev_loop\n");
 
     freeaddrinfo(peer);
 

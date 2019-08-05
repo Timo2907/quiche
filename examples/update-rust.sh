@@ -3,6 +3,6 @@
 cd ..
 cargo build --examples
 cd examples
-mv ../target/debug/examples/http3-server ./http3-server_rust
-mv ../target/debug/examples/http3-client ./http3-client_rust
+mv ../target/debug/examples/server ./server_rust
+mv ../target/debug/examples/client ./client_rust
 

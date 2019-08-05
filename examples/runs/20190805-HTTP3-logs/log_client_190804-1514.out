@@ -1,0 +1,597 @@
+DEBUG::ev_loop
+DEBUG::ev_io_init (Receive Callback)
+DEBUG::ev_io_start
+DEBUG::watcher.data
+DEBUG::ev_init (Timeout Callback)
+DEBUG::timer.data
+HTTP3_CLIENT::quiche::tls: 2053894db7f23891fbcf3280ce9961ce tls write message lvl=Initial len=512
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Initial version=babababa dcid=eb4b9a6ac2597aa410c61620e397c23d scid=2053894db7f23891fbcf3280ce9961ce len=1158 pn=0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm CRYPTO off=0 len=512
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm PADDING len=626
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=998.694002ms crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+HTTP3_CLIENT::sent 1200 bytes
+HTTP3_CLIENT::done writing
+DEBUG::flush_egress
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt VersionNegotiation version=0 dcid=2053894db7f23891fbcf3280ce9961ce scid=eb4b9a6ac2597aa410c61620e397c23d versions=[ff000014]
+HTTP3_CLIENT::done reading
+HTTP3_CLIENT::quiche::tls: 2053894db7f23891fbcf3280ce9961ce tls write message lvl=Initial len=512
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Initial version=ff000014 dcid=eb4b9a6ac2597aa410c61620e397c23d scid=2053894db7f23891fbcf3280ce9961ce len=1158 pn=1
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm CRYPTO off=0 len=512
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm PADDING len=626
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=998.714987ms crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+HTTP3_CLIENT::sent 1200 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Retry version=ff000014 dcid=2053894db7f23891fbcf3280ce9961ce scid=018783ec21bd09cea440d3f2d1d234fa402e odcid=eb4b9a6ac2597aa410c61620e397c23d token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d
+HTTP3_CLIENT::done reading
+HTTP3_CLIENT::quiche::tls: 2053894db7f23891fbcf3280ce9961ce tls write message lvl=Initial len=512
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Initial version=ff000014 dcid=018783ec21bd09cea440d3f2d1d234fa402e scid=2053894db7f23891fbcf3280ce9961ce token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d len=1130 pn=2
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm CRYPTO off=0 len=512
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm PADDING len=598
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=998.979609ms crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+HTTP3_CLIENT::sent 1200 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Initial version=ff000014 dcid=2053894db7f23891fbcf3280ce9961ce scid=018783ec21bd09cea440d3f2d1d234fa402e token= len=149 pn=0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm ACK delay=800 blocks=[2..2]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 2
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm CRYPTO off=0 len=122
+HTTP3_CLIENT::quiche::tls: 2053894db7f23891fbcf3280ce9961ce tls set encryption secret lvl=Handshake
+HTTP3_CLIENT::recv 192 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Handshake version=ff000014 dcid=2053894db7f23891fbcf3280ce9961ce scid=018783ec21bd09cea440d3f2d1d234fa402e len=1154 pn=0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm CRYPTO off=0 len=1133
+HTTP3_CLIENT::recv 1196 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Handshake version=ff000014 dcid=2053894db7f23891fbcf3280ce9961ce scid=018783ec21bd09cea440d3f2d1d234fa402e len=234 pn=1
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm CRYPTO off=1133 len=212
+HTTP3_CLIENT::quiche::tls: 2053894db7f23891fbcf3280ce9961ce tls set encryption secret lvl=Application
+HTTP3_CLIENT::quiche::tls: 2053894db7f23891fbcf3280ce9961ce tls write message lvl=Handshake len=36
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce connection established: cipher=Ok(AES128_GCM) proto=Ok("h3-20") resumed=false idle_timeout=5000 max_packet_size=1350 initial_max_data=10000000 initial_max_stream_data_bidi_local=1000000 initial_max_stream_data_bidi_remote=1000000 initial_max_stream_data_uni=1000000 initial_max_streams_bidi=100 initial_max_streams_uni=5 ack_delay_exponent=3 max_ack_delay=25 disable_migration=true
+HTTP3_CLIENT::recv 276 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::connection established: h3-20
+ ############################## 
+ ##### TLS HANDSHAKE DONE ##### 
+ ############################## 
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce sending GREASE stream on stream id 14
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce sending GREASE frames on stream id 0
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce sending HEADERS of size 27 on stream 0
+HTTP3_CLIENT::sent HTTP request 0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Initial version=ff000014 dcid=018783ec21bd09cea440d3f2d1d234fa402e scid=2053894db7f23891fbcf3280ce9961ce token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d len=1199 pn=3
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=1021 blocks=[0..0]
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm PADDING len=1177
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::sent 1269 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Handshake version=ff000014 dcid=018783ec21bd09cea440d3f2d1d234fa402e scid=2053894db7f23891fbcf3280ce9961ce token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d len=61 pn=0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=516 blocks=[0..1]
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm CRYPTO off=0 len=36
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=16.683013ms crypto=103 inflight=103 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce dropped initial state
+HTTP3_CLIENT::sent 103 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=46 pn=0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm STREAM id=2 off=0 len=26 fin=false
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=16.378961ms crypto=103 inflight=169 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::sent 66 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=1
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm STREAM id=6 off=0 len=1 fin=false
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=16.193132ms crypto=103 inflight=210 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=2
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm STREAM id=10 off=0 len=1 fin=false
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=15.982181ms crypto=103 inflight=251 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=46 pn=3
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm STREAM id=14 off=0 len=26 fin=false
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=15.731249ms crypto=103 inflight=317 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::sent 66 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=86 pn=4
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm STREAM id=0 off=0 len=65 fin=true
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=15.49217ms crypto=103 inflight=423 cwnd=15720 latest_rtt=8.457108ms srtt=Some(8.457108ms) min_rtt=8.457108ms rttvar=4.228554ms probes=0 
+HTTP3_CLIENT::sent 106 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Handshake version=ff000014 dcid=2053894db7f23891fbcf3280ce9961ce scid=018783ec21bd09cea440d3f2d1d234fa402e len=23 pn=2
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm ACK delay=582 blocks=[0..0]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 0
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=43.377248ms crypto=0 inflight=320 cwnd=15823 latest_rtt=5.931256ms srtt=Some(8.141376ms) min_rtt=5.931256ms rttvar=3.802878ms probes=0 
+HTTP3_CLIENT::recv 64 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=455 pn=0
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm ACK delay=247 blocks=[0..4]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 4
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 3
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 2
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 1
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce packet newly acked 0
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm CRYPTO off=0 len=396
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=3 off=0 len=28 fin=false
+HTTP3_CLIENT::recv 472 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=22 pn=1
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=7 off=0 len=1 fin=false
+HTTP3_CLIENT::recv 39 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=22 pn=2
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=11 off=0 len=1 fin=false
+HTTP3_CLIENT::recv 39 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=47 pn=3
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=15 off=0 len=26 fin=false
+HTTP3_CLIENT::recv 64 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1324 pn=4
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=0 len=1302 fin=false
+HTTP3_CLIENT::recv 1341 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=5
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=1302 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=6
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=2604 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=7
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=3906 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=8
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=5208 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 15 is readable
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 15
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 7 bytes on stream 15
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 7 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 0 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 7 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 18 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 17 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 0
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 3 bytes on stream 0
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 3 is readable
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 3
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce peer's control stream: 3
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 3
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 3
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 25 bytes on stream 3
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 7 is readable
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 7
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 11 is readable
+HTTP3_CLIENT::quiche::h3::stream: 2053894db7f23891fbcf3280ce9961ce read 1 bytes on stream 11
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce rx frm HEADERS len=17 on stream 0
+HTTP3_CLIENT::quiche::h3::qpack::decoder: Header count=0 base=0
+HTTP3_CLIENT::quiche::h3::qpack::decoder: Indexed index=25 static=true
+HTTP3_CLIENT::quiche::h3::qpack::decoder: Literal name_idx=92 static=true value="quiche"
+HTTP3_CLIENT::quiche::h3::qpack::decoder: Literal name_idx=4 static=true value="101904"
+HTTP3_CLIENT::got HTTP header: :status=200
+HTTP3_CLIENT::got HTTP header: server=quiche
+HTTP3_CLIENT::got HTTP header: content-length=101904
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce rx frm SETTINGS placeholders=Some(16), max_headers=Some(1024), qpack_max_table=Some(0), qpack_blocked=Some(0)  on stream 3
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=22 pn=5
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=217 blocks=[0..8]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 42 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=9
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=6510 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=10
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=7812 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=11
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=9114 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=12
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=10416 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=13
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=11718 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=14
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=13020 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=784 pn=15
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=14322 len=761 fin=false
+HTTP3_CLIENT::recv 801 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1325 pn=16
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=15083 len=1302 fin=false
+HTTP3_CLIENT::recv 1342 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=17
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=16385 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=18
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=17687 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=6
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=41 blocks=[0..18]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=19
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=18989 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=20
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=20291 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=21
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=21593 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=22
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=22895 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=7
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=33 blocks=[0..22]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=23
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=24197 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=24
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=25499 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=25
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=26801 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1193 pn=26
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=28103 len=1168 fin=false
+HTTP3_CLIENT::recv 1210 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=8
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=33 blocks=[0..26]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=27
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=29271 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=9
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=37 blocks=[0..27]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=28
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=30573 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=29
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=31875 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=30
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=33177 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=31
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=34479 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=32
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=35781 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=10
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=30 blocks=[0..32]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=33
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=37083 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=34
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=38385 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=35
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=39687 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=36
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=40989 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=11
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=32 blocks=[0..36]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=37
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=42291 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=38
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=43593 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=39
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=44895 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=40
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=46197 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=12
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=32 blocks=[0..40]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=41
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=47499 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=42
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=48801 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=43
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=50103 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=44
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=51405 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=13
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=32 blocks=[0..44]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=45
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=52707 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=46
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=54009 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=47
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=55311 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=14
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=32 blocks=[0..47]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=48
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=56613 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=49
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=57915 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=50
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=59217 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=51
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=60519 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=15
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=31 blocks=[0..51]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=52
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=61821 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=53
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=63123 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=54
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=64425 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=55
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=65727 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=16
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=33 blocks=[0..55]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=56
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=67029 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=57
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=68331 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=58
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=69633 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=59
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=70935 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=17
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=29 blocks=[0..59]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=60
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=72237 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1289 pn=61
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=73539 len=1264 fin=false
+HTTP3_CLIENT::recv 1306 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=18
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=29 blocks=[0..61]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=62
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=74803 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=63
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=76105 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=21 pn=19
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=29 blocks=[0..63]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 41 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=64
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=77407 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=65
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=78709 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=66
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=80011 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=67
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=81313 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=23 pn=20
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=30 blocks=[0..67]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 43 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=68
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=82615 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=69
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=83917 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=70
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=85219 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=71
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=86521 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=23 pn=21
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=27 blocks=[0..71]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 43 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=72
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=87823 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=73
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=89125 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=74
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=90427 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=75
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=91729 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=23 pn=22
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=29 blocks=[0..75]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 43 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=76
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=93031 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=77
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=94333 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=78
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=95635 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=79
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=96937 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=80
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=98239 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=23 pn=23
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=33 blocks=[0..80]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=none crypto=0 inflight=0 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 43 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1327 pn=81
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=99541 len=1302 fin=false
+HTTP3_CLIENT::recv 1344 bytes
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx pkt Application dcid=2053894db7f23891fbcf3280ce9961ce key_phase=false len=1146 pn=82
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce rx frm STREAM id=0 off=100843 len=1121 fin=true
+HTTP3_CLIENT::recv 1163 bytes
+HTTP3_CLIENT::recv would block
+HTTP3_CLIENT::quiche::h3: 2053894db7f23891fbcf3280ce9961ce stream id 0 is readable
+############################## 
+ ### Content received. ### 
+ ############################## 
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx pkt Application dcid=018783ec21bd09cea440d3f2d1d234fa402e token=7175696368657f000001eb4b9a6ac2597aa410c61620e397c23d key_phase=false len=27 pn=24
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm ACK delay=30 blocks=[0..82]
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce tx frm APPLICATION_CLOSE err=0 reason=[]
+HTTP3_CLIENT::quiche::recovery: 2053894db7f23891fbcf3280ce9961ce timer=47.062384ms crypto=0 inflight=47 cwnd=16143 latest_rtt=5.078688ms srtt=Some(7.75854ms) min_rtt=5.078688ms rttvar=3.61783ms probes=0 
+HTTP3_CLIENT::sent 47 bytes
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::timeout
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::quiche: 2053894db7f23891fbcf3280ce9961ce draining timeout expired
+HTTP3_CLIENT::timeout
+HTTP3_CLIENT::done writing
+HTTP3_CLIENT::connection closed
+HTTP3_CLIENT::QUIC Statistics: pkts recv=87 sent=30 lost=0 / rtt=7758540ns
+DEBUG::ev_loop

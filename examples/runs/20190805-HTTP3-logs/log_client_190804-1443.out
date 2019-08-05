@@ -1,0 +1,18 @@
+ASAN:SIGSEGV
+=================================================================
+==13722==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f9358d5471b bp 0x7ffe7a35da70 sp 0x7ffe7a35d200 T0)
+    #0 0x7f9358d5471a in __asan_memcpy (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x8c71a)
+    #1 0x50d287 in core::intrinsics::copy_nonoverlapping::h1864959e3e022add /rustc/a53f9df32fbb0b5f4382caaad8f1a46f36ea887c/src/libcore/intrinsics.rs:1412
+    #2 0x4db4ab in core::ptr::read::h92e1571f33dc091c /rustc/a53f9df32fbb0b5f4382caaad8f1a46f36ea887c/src/libcore/ptr.rs:574
+    #3 0x4928d6 in _$LT$alloc..collections..btree..map..BTreeMap$LT$K$C$V$GT$$u20$as$u20$core..ops..drop..Drop$GT$::drop::h22d349a9ae541b87 /rustc/a53f9df32fbb0b5f4382caaad8f1a46f36ea887c/src/liballoc/collections/btree/map.rs:132
+    #4 0x6a9bde in core::ptr::real_drop_in_place::hef7d7112c9494c3e /rustc/a53f9df32fbb0b5f4382caaad8f1a46f36ea887c/src/libcore/ptr.rs:195
+    #5 0x6a93a1 in core::ptr::real_drop_in_place::hbfef12f62d58f1e2 /rustc/a53f9df32fbb0b5f4382caaad8f1a46f36ea887c/src/libcore/ptr.rs:195
+    #6 0x6a73e3 in core::ptr::real_drop_in_place::h0b60c1f77ce0a9df /rustc/a53f9df32fbb0b5f4382caaad8f1a46f36ea887c/src/libcore/ptr.rs:195
+    #7 0x507723 in quiche_h3_conn_free src/h3/ffi.rs:216
+    #8 0x473ad2 in main /home/maki/quiche/examples/http3-client.c:394
+    #9 0x7f93580d982f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)
+    #10 0x471e28 in _start (/home/maki/quiche/examples/http3-client_c+0x471e28)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV ??:0 __asan_memcpy
+==13722==ABORTING
