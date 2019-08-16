@@ -1,0 +1,1 @@
+http3-client_c: ev.c:3846: ev_io_start: Assertion `("libev: ev_io_start called with corrupted watcher", ((WL)w)->next != (WL)w)' failed.

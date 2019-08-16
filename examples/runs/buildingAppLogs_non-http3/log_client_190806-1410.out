@@ -1,0 +1,101 @@
+quiche::tls: 5d618444810477fbf626814116ad91b8 tls write message lvl=Initial len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Initial version=babababa dcid=46f53a628e35e14bd2e63cb62cf6226f scid=5d618444810477fbf626814116ad91b8 len=1158 pn=0
+quiche: 5d618444810477fbf626814116ad91b8 tx frm CRYPTO off=0 len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx frm PADDING len=626
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=998.716263ms crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+sent 1200 bytes
+done writing
+timeout
+done writing
+quiche: 5d618444810477fbf626814116ad91b8 loss detection timeout expired
+quiche::recovery: 5d618444810477fbf626814116ad91b8 resend unacked crypto data (timer=exp crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 )
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=999.253373ms crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+timeout
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Initial version=babababa dcid=46f53a628e35e14bd2e63cb62cf6226f scid=5d618444810477fbf626814116ad91b8 len=1158 pn=1
+quiche: 5d618444810477fbf626814116ad91b8 tx frm CRYPTO off=0 len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx frm PADDING len=626
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=1.999621468s crypto=2400 inflight=2400 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+sent 1200 bytes
+done writing
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt VersionNegotiation version=0 dcid=5d618444810477fbf626814116ad91b8 scid=46f53a628e35e14bd2e63cb62cf6226f versions=[ff000014]
+done reading
+quiche::tls: 5d618444810477fbf626814116ad91b8 tls write message lvl=Initial len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Initial version=ff000014 dcid=46f53a628e35e14bd2e63cb62cf6226f scid=5d618444810477fbf626814116ad91b8 len=1158 pn=2
+quiche: 5d618444810477fbf626814116ad91b8 tx frm CRYPTO off=0 len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx frm PADDING len=626
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=1.998683414s crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+sent 1200 bytes
+done writing
+done reading
+done writing
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt Retry version=ff000014 dcid=5d618444810477fbf626814116ad91b8 scid=46f53a628e35e14bd2e63cb62cf6226f odcid=46f53a628e35e14bd2e63cb62cf6226f token=7175696368650200a6707f000001000000000000000046f53a628e35e14bd2e63cb62cf6226f
+done reading
+quiche::tls: 5d618444810477fbf626814116ad91b8 tls write message lvl=Initial len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Initial version=ff000014 dcid=46f53a628e35e14bd2e63cb62cf6226f scid=5d618444810477fbf626814116ad91b8 token=7175696368650200a6707f000001000000000000000046f53a628e35e14bd2e63cb62cf6226f len=1120 pn=3
+quiche: 5d618444810477fbf626814116ad91b8 tx frm CRYPTO off=0 len=512
+quiche: 5d618444810477fbf626814116ad91b8 tx frm PADDING len=588
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=1.998981336s crypto=1200 inflight=1200 cwnd=14520 latest_rtt=0ns srtt=None min_rtt=0ns rttvar=0ns probes=0 
+sent 1200 bytes
+done writing
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt Initial version=ff000014 dcid=5d618444810477fbf626814116ad91b8 scid=b038c8e8fcdd34f34408b7dafe99e044 token= len=149 pn=0
+quiche: 5d618444810477fbf626814116ad91b8 rx frm ACK delay=1833 blocks=[3..3]
+quiche::recovery: 5d618444810477fbf626814116ad91b8 packet newly acked 3
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=none crypto=0 inflight=0 cwnd=15720 latest_rtt=16.970656ms srtt=Some(16.970656ms) min_rtt=16.970656ms rttvar=8.485328ms probes=0 
+quiche: 5d618444810477fbf626814116ad91b8 rx frm CRYPTO off=0 len=122
+quiche::tls: 5d618444810477fbf626814116ad91b8 tls set encryption secret lvl=Handshake
+recv 190 bytes
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt Handshake version=ff000014 dcid=5d618444810477fbf626814116ad91b8 scid=b038c8e8fcdd34f34408b7dafe99e044 len=1156 pn=0
+quiche: 5d618444810477fbf626814116ad91b8 rx frm CRYPTO off=0 len=1135
+recv 1196 bytes
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt Handshake version=ff000014 dcid=5d618444810477fbf626814116ad91b8 scid=b038c8e8fcdd34f34408b7dafe99e044 len=215 pn=1
+quiche: 5d618444810477fbf626814116ad91b8 rx frm CRYPTO off=1135 len=193
+quiche::tls: 5d618444810477fbf626814116ad91b8 tls set encryption secret lvl=Application
+quiche::tls: 5d618444810477fbf626814116ad91b8 tls write message lvl=Handshake len=36
+quiche: 5d618444810477fbf626814116ad91b8 connection established: cipher=Ok(AES128_GCM) proto=Ok("hq-20") resumed=false idle_timeout=5000 max_packet_size=1350 initial_max_data=10000000 initial_max_stream_data_bidi_local=1000000 initial_max_stream_data_bidi_remote=1000000 initial_max_stream_data_uni=0 initial_max_streams_bidi=100 initial_max_streams_uni=0 ack_delay_exponent=3 max_ack_delay=25 disable_migration=false
+recv 255 bytes
+recv would block
+connection established: hq-20
+sent HTTP request
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Initial version=ff000014 dcid=b038c8e8fcdd34f34408b7dafe99e044 scid=5d618444810477fbf626814116ad91b8 token=7175696368650200a6707f000001000000000000000046f53a628e35e14bd2e63cb62cf6226f len=1199 pn=4
+quiche: 5d618444810477fbf626814116ad91b8 tx frm ACK delay=889 blocks=[0..0]
+quiche: 5d618444810477fbf626814116ad91b8 tx frm PADDING len=1177
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=none crypto=0 inflight=0 cwnd=15720 latest_rtt=16.970656ms srtt=Some(16.970656ms) min_rtt=16.970656ms rttvar=8.485328ms probes=0 
+sent 1279 bytes
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Handshake version=ff000014 dcid=b038c8e8fcdd34f34408b7dafe99e044 scid=5d618444810477fbf626814116ad91b8 token=7175696368650200a6707f000001000000000000000046f53a628e35e14bd2e63cb62cf6226f len=61 pn=0
+quiche: 5d618444810477fbf626814116ad91b8 tx frm ACK delay=426 blocks=[0..1]
+quiche: 5d618444810477fbf626814116ad91b8 tx frm CRYPTO off=0 len=36
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=33.714561ms crypto=101 inflight=101 cwnd=15720 latest_rtt=16.970656ms srtt=Some(16.970656ms) min_rtt=16.970656ms rttvar=8.485328ms probes=0 
+quiche: 5d618444810477fbf626814116ad91b8 dropped initial state
+sent 101 bytes
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Application dcid=b038c8e8fcdd34f34408b7dafe99e044 token=7175696368650200a6707f000001000000000000000046f53a628e35e14bd2e63cb62cf6226f key_phase=false len=38 pn=0
+quiche: 5d618444810477fbf626814116ad91b8 tx frm STREAM id=4 off=0 len=18 fin=true
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=33.407186ms crypto=101 inflight=157 cwnd=15720 latest_rtt=16.970656ms srtt=Some(16.970656ms) min_rtt=16.970656ms rttvar=8.485328ms probes=0 
+sent 56 bytes
+done writing
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt Handshake version=ff000014 dcid=5d618444810477fbf626814116ad91b8 scid=b038c8e8fcdd34f34408b7dafe99e044 len=23 pn=2
+quiche: 5d618444810477fbf626814116ad91b8 rx frm ACK delay=202 blocks=[0..0]
+quiche::recovery: 5d618444810477fbf626814116ad91b8 packet newly acked 0
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=77.240076ms crypto=0 inflight=56 cwnd=15821 latest_rtt=2.728424ms srtt=Some(15.190377ms) min_rtt=2.728424ms rttvar=9.924554ms probes=0 
+recv 62 bytes
+quiche: 5d618444810477fbf626814116ad91b8 rx pkt Application dcid=5d618444810477fbf626814116ad91b8 key_phase=false len=431 pn=0
+quiche: 5d618444810477fbf626814116ad91b8 rx frm ACK delay=61 blocks=[0..0]
+quiche::recovery: 5d618444810477fbf626814116ad91b8 packet newly acked 0
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=none crypto=0 inflight=0 cwnd=15877 latest_rtt=2.737794ms srtt=Some(13.633804ms) min_rtt=2.728424ms rttvar=10.556561ms probes=0 
+quiche: 5d618444810477fbf626814116ad91b8 rx frm CRYPTO off=0 len=396
+quiche: 5d618444810477fbf626814116ad91b8 rx frm STREAM id=4 off=0 len=5 fin=true
+recv 448 bytes
+recv would block
+stream 4 is readable
+quiche: 5d618444810477fbf626814116ad91b8 tx pkt Application dcid=b038c8e8fcdd34f34408b7dafe99e044 token=7175696368650200a6707f000001000000000000000046f53a628e35e14bd2e63cb62cf6226f key_phase=false len=25 pn=1
+quiche: 5d618444810477fbf626814116ad91b8 tx frm ACK delay=63 blocks=[0..0]
+quiche: 5d618444810477fbf626814116ad91b8 tx frm APPLICATION_CLOSE err=0 reason=[]
+quiche::recovery: 5d618444810477fbf626814116ad91b8 timer=80.677495ms crypto=0 inflight=43 cwnd=15877 latest_rtt=2.737794ms srtt=Some(13.633804ms) min_rtt=2.728424ms rttvar=10.556561ms probes=0 
+sent 43 bytes
+done writing
+timeout
+done writing
+quiche: 5d618444810477fbf626814116ad91b8 draining timeout expired
+timeout
+done writing
+connection closed, recv=5 sent=8 lost=0 rtt=13633804ns
+byez
